@@ -9,11 +9,20 @@ interface Named {
 
 class random {
     check: boolean = true;
+    ss: any;
 
     constructor(public names: string) {
-
+        // this.ss = names
     }
 }
+
+const hi = (yo: any) => {
+    console.log('yo', yo)
+}
+
+hi('Toushif')
+const cl = new random('Boris')
+console.log('clllllll', cl); 
 
 // class ITDep extends random {
     

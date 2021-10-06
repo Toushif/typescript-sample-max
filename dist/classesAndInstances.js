@@ -1,6 +1,21 @@
 "use strict";
-class Department {
-    constructor(id, name) {
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Department = /** @class */ (function () {
+    function Department(id, name) {
         this.id = id;
         this.name = name;
         // private readonly id: string;
@@ -11,74 +26,85 @@ class Department {
         // this.name = n;
         // console.log(Department.fiscalYear);
     }
-    static createEmployee(name) {
+    Department.createEmployee = function (name) {
         return { name: name };
-    }
-    addEmployee(employee) {
+    };
+    Department.prototype.addEmployee = function (employee) {
         // validation etc
         // this.id = 'd2';
         this.employees.push(employee);
-    }
-    printEmployeeInformation() {
+    };
+    Department.prototype.printEmployeeInformation = function () {
         console.log(this.employees.length);
         console.log(this.employees);
+    };
+    Department.fiscalYear = 2020; // a static property is craeted so it can be used globally directly without instantiating the class again and again. Just Department.fiscalYear will return the value when accessed outside the class. So you cannot do this.fiscalYear inside the class coz fiscalYear is not a property of the intance of this class anymore. 
+    return Department;
+}());
+var ITDepartment = /** @class */ (function (_super) {
+    __extends(ITDepartment, _super);
+    function ITDepartment(id, admins) {
+        var _this = _super.call(this, id, 'IT') || this;
+        _this.admins = admins;
+        return _this;
     }
-}
-Department.fiscalYear = 2020; // a static property is craeted so it can be used globally directly without instantiating the class again and again. Just Department.fiscalYear will return the value when accessed outside the class. So you cannot do this.fiscalYear inside the class coz fiscalYear is not a property of the intance of this class anymore. 
-class ITDepartment extends Department {
-    constructor(id, admins) {
-        super(id, 'IT');
-        this.admins = admins;
-    }
-    describe() {
+    ITDepartment.prototype.describe = function () {
         console.log('IT Department - ID: ' + this.id);
+    };
+    return ITDepartment;
+}(Department));
+var AccountingDepartment = /** @class */ (function (_super) {
+    __extends(AccountingDepartment, _super);
+    function AccountingDepartment(id, reports) {
+        var _this = _super.call(this, id, 'Accounting') || this;
+        _this.reports = reports;
+        _this.lastReport = reports[0];
+        return _this;
     }
-}
-class AccountingDepartment extends Department {
-    constructor(id, reports) {
-        super(id, 'Accounting');
-        this.reports = reports;
-        this.lastReport = reports[0];
-    }
-    get mostRecentReport() {
-        if (this.lastReport) {
-            return this.lastReport;
-        }
-        throw new Error('No report found.');
-    }
-    set mostRecentReport(value) {
-        if (!value) {
-            throw new Error('Please pass in a valid value!');
-        }
-        this.addReport(value);
-    }
-    static getInstance() {
+    Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
+        get: function () {
+            if (this.lastReport) {
+                return this.lastReport;
+            }
+            throw new Error('No report found.');
+        },
+        set: function (value) {
+            if (!value) {
+                throw new Error('Please pass in a valid value!');
+            }
+            this.addReport(value);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    AccountingDepartment.getInstance = function () {
         if (AccountingDepartment.instance) { //here if AccountingDepartment.instance or this.instance is undefined (whcih it will be initially) then skip the if block and create a new instance below or else always return the same instance. THis is how singleton work - you create the class instance only once and then just use the same instance thereafter.
             return this.instance;
         }
         this.instance = new AccountingDepartment('d2', []);
         return this.instance;
-    }
-    describe() {
+    };
+    AccountingDepartment.prototype.describe = function () {
         console.log('Accounting Department - ID: ' + this.id);
-    }
-    addEmployee(name) {
+    };
+    AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === 'Max') {
             return;
         }
         this.employees.push(name);
-    }
-    addReport(text) {
+    };
+    AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
         this.lastReport = text;
-    }
-    printReports() {
+    };
+    AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
-    }
-}
-const employee1 = Department.createEmployee('Max');
+    };
+    return AccountingDepartment;
+}(Department));
+var employee1 = Department.createEmployee('Max');
 console.log(employee1, Department.fiscalYear);
-const it = new ITDepartment('d1', ['Max']);
+var it = new ITDepartment('d1', ['Max']);
 it.addEmployee('Max');
 it.addEmployee('Manu');
 // it.employees[2] = 'Anna';
@@ -87,8 +113,8 @@ it.name = 'NEW NAME';
 it.printEmployeeInformation();
 console.log(it);
 // const accounting = new AccountingDepartment('d2', []);
-const accounting = AccountingDepartment.getInstance();
-const accounting2 = AccountingDepartment.getInstance();
+var accounting = AccountingDepartment.getInstance();
+var accounting2 = AccountingDepartment.getInstance();
 console.log(accounting, accounting2);
 accounting.mostRecentReport = 'Year End Report';
 accounting.addReport('Something went wrong...');
