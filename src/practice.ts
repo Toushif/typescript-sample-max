@@ -17,18 +17,18 @@ class random {
 }
 
 const hi = (yo: any) => {
-    console.log('yo', yo)
-}
+    console.log("yo", yo);
+};
 
-hi('Toushif')
-const cl = new random('Boris')
-console.log('clllllll', cl); 
+hi("Toushif");
+const cl = new random("Boris");
+console.log("clllllll", cl);
 
 // class ITDep extends random {
-    
+
 // }
 
 // const val = new ITDep('Toushif');
-// console.log(val.names); 
+// console.log(val.names);
 // let check = null;
 // const store = check ?? 'Hi';
