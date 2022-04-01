@@ -1,3 +1,4 @@
+console.log('-------------------Interface Start-----------------------');
 // type AddFn = (a: number, b: number) => number;
 interface AddFn {
     (a: number, b: number): number;
@@ -44,3 +45,4 @@ user1 = new PersonClass();
 
 user1.greet("Hi there - I am");
 console.log(user1.greet('Toushif'));
+console.log('-------------------Interface End-----------------------');
