@@ -1,3 +1,4 @@
+console.log('-------------------Practice Start-----------------------');
 interface AddFn {
     (a: number, b: number): number;
 }
@@ -32,3 +33,4 @@ console.log("clllllll", cl);
 // console.log(val.names);
 // let check = null;
 // const store = check ?? 'Hi';
+console.log('-------------------Practice End-----------------------');

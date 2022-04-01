@@ -1,4 +1,5 @@
 "use strict";
+console.log('-------------------Practice Start-----------------------');
 var random = /** @class */ (function () {
     function random(names) {
         this.names = names;
@@ -19,4 +20,5 @@ console.log("clllllll", cl);
 // console.log(val.names);
 // let check = null;
 // const store = check ?? 'Hi';
+console.log('-------------------Practice End-----------------------');
 //# sourceMappingURL=practice.js.map
