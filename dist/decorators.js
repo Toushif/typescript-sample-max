@@ -34,6 +34,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+console.log('-------------------Decorators Start-----------------------');
 function Logger(logString) {
     console.log("LOGGER FACTORY", arguments);
     return function (constructor) {
@@ -235,4 +236,5 @@ courseForm.addEventListener("submit", function (event) {
     }
     console.log(createdCourse);
 });
+console.log('-------------------Decorators End-----------------------');
 //# sourceMappingURL=decorators.js.map

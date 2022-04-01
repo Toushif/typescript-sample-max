@@ -1,3 +1,4 @@
+console.log('-------------------Decorators Start-----------------------');
 function Logger(logString: string) {
     console.log("LOGGER FACTORY", arguments);
     return function (constructor: Function) {
@@ -218,3 +219,4 @@ courseForm.addEventListener("submit", (event) => {
     }
     console.log(createdCourse);
 });
+console.log('-------------------Decorators End-----------------------');
