@@ -130,7 +130,7 @@ var Product = /** @class */ (function () {
         Log2
     ], Product.prototype, "price", null);
     __decorate([
-        Log3 //Here Log3 is a method decorator where it is called when a class is defined not instantiated. When Log3 is called - it is called with 3 arguments - first - either it's the prototype of the instance where the method is defined (for non-static normal class method), OR, the costructor function if the method is a static method; second - the name value of the method itself which could be a string, Symbol or a number; and third - PropertyDescriptor or PropertySccessor.
+        Log3 //Here Log3 is a method decorator where it is called when a class is defined not instantiated. When Log3 is called - it is called with 3 arguments - first - either it's the prototype of the instance where the method is defined (for non-static normal class method), OR, the costructor function if the method is a static method; second - the name value of the method itself which could be a string, Symbol or a number; and third - PropertyDescriptor or PropertySuccessor.
         ,
         __param(0, Log4)
     ], Product.prototype, "getPriceWithTax", null);
