@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+console.log('-------------------Classes Start-----------------------');
 var Department = /** @class */ (function () {
     function Department(id, name) {
         this.id = id;
@@ -131,4 +132,5 @@ accounting.addEmployee("Manu");
 accounting.describe();
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 // accountingCopy.describe();
+console.log('-------------------Classes End-----------------------');
 //# sourceMappingURL=classesAndInstances.js.map

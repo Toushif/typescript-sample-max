@@ -1,3 +1,4 @@
+console.log('-------------------Classes Start-----------------------');
 abstract class Department {
     //if a class is marked as abstrtact then you cannot instantiate that class anymore, because abstract class means that it is only a blueprint or a shell for other classes to extend this class and use its properties and methods. YOu can only instantiate the classes which extends the abstract class.
     static fiscalYear = 2020; // a static property is created so it can be used globally directly without instantiating the class again and again. Just Department.fiscalYear will return the value when accessed outside the class. So you cannot do this.fiscalYear inside the class coz fiscalYear is not a property of the intance of this class anymore.
@@ -134,3 +135,4 @@ accounting.describe();
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 
 // accountingCopy.describe();
+console.log('-------------------Classes End-----------------------');
