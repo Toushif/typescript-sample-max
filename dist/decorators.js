@@ -35,14 +35,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 function Logger(logString) {
-    console.log('LOGGER FACTORY', arguments);
+    console.log("LOGGER FACTORY", arguments);
     return function (constructor) {
         console.log(logString);
         console.log(constructor);
     };
 }
 function WithTemplate(template, hookId) {
-    console.log('TEMPLATE FACTORY');
+    console.log("TEMPLATE FACTORY");
     return function (originalConstructor) {
         return /** @class */ (function (_super) {
             __extends(class_1, _super);
@@ -52,11 +52,11 @@ function WithTemplate(template, hookId) {
                     _[_i] = arguments[_i];
                 }
                 var _this = _super.call(this) || this;
-                console.log('Rendering template');
+                console.log("Rendering template");
                 var hookEl = document.getElementById(hookId);
                 if (hookEl) {
                     hookEl.innerHTML = template;
-                    hookEl.querySelector('h1').textContent = _this.name;
+                    hookEl.querySelector("h1").textContent = _this.name;
                 }
                 return _this;
             }
@@ -67,14 +67,14 @@ function WithTemplate(template, hookId) {
 // @Logger('LOGGING - PERSON')
 var Person = /** @class */ (function () {
     function Person() {
-        this.name = 'Max';
-        console.log('Creating person object...');
+        this.name = "Max";
+        console.log("Creating person object...");
     }
     Person = __decorate([
-        Logger('LOGGING') //So Logger is a decorator which is basically a function which takes a constructor function as an argument. A decorator is executed when a class is defined, not instantiated. So a decorator always executes first. SO a decorator runs when JS finds a class(a constructor function - coz class is just a syntactic sugar right) associated with that decorator and it passes that class to that decorator and it executes. 
-        //Here above Logger('LOGGIN') is actually a factory decorator which returns a decorator function when called. So we are passing the argument 'LOGGING' and execute the outer Logger function which in turns returns an anonymous function. This anonymous function does the main job where the class or constructor function is passed as explained above. 
+        Logger("LOGGING") //So Logger is a decorator which is basically a function which takes a constructor function as an argument. A decorator is executed when a class is defined, not instantiated. So a decorator always executes first. SO a decorator runs when JS finds a class(a constructor function - coz class is just a syntactic sugar right) associated with that decorator and it passes that class to that decorator and it executes.
+        //Here above Logger('LOGGIN') is actually a factory decorator which returns a decorator function when called. So we are passing the argument 'LOGGING' and execute the outer Logger function which in turns returns an anonymous function. This anonymous function does the main job where the class or constructor function is passed as explained above.
         ,
-        WithTemplate('<h1>My Person Object</h1>', 'app') //This is also aother decorator. SO if there are multple decorators then it is executed bottom up by javascript, i.e, first the WithTemplate decorator is executed and then the Logger is executed. But creation of decorator wise first Logger decorator is created and then WithTemplate decorator coz of synchronous behaviour of JS of parsing line by line. 
+        WithTemplate("<h1>My Person Object</h1>", "app") //This is also aother decorator. SO if there are multple decorators then it is executed bottom up by javascript, i.e, first the WithTemplate decorator is executed and then the Logger is executed. But creation of decorator wise first Logger decorator is created and then WithTemplate decorator coz of synchronous behaviour of JS of parsing line by line.
     ], Person);
     return Person;
 }());
@@ -82,23 +82,23 @@ var pers = new Person();
 console.log(pers);
 // ---
 function Log(target, propertyName) {
-    console.log('Property decorator!');
+    console.log("Property decorator!");
     console.log(target, propertyName);
 }
 function Log2(target, name, descriptor) {
-    console.log('Accessor decorator!');
+    console.log("Accessor decorator!");
     console.log(target);
     console.log(name);
     console.log(descriptor);
 }
 function Log3(target, name, descriptor) {
-    console.log('Method decorator!');
+    console.log("Method decorator!");
     console.log(target);
     console.log(name);
     console.log(descriptor);
 }
 function Log4(target, name, position) {
-    console.log('Parameter decorator!');
+    console.log("Parameter decorator!");
     console.log(target);
     console.log(name);
     console.log(position);
@@ -114,7 +114,7 @@ var Product = /** @class */ (function () {
                 this._price = val;
             }
             else {
-                throw new Error('Invalid price - should be positive!');
+                throw new Error("Invalid price - should be positive!");
             }
         },
         enumerable: false,
@@ -130,15 +130,16 @@ var Product = /** @class */ (function () {
         Log2
     ], Product.prototype, "price", null);
     __decorate([
-        Log3 //Here Log3 is a method decorator where it is called when a class is defined not instantiated. When Log3 is called - it is called with 3 arguments - first - either it's the prototype of the instance where the method is defined (for non-static normal class method), OR, the costructor function if the method is a static method; second - the name value of the method itself which could be a string, Symbol or a number; and third - PropertyDescriptor or PropertySccessor. 
+        Log3 //Here Log3 is a method decorator where it is called when a class is defined not instantiated. When Log3 is called - it is called with 3 arguments - first - either it's the prototype of the instance where the method is defined (for non-static normal class method), OR, the costructor function if the method is a static method; second - the name value of the method itself which could be a string, Symbol or a number; and third - PropertyDescriptor or PropertySccessor.
         ,
         __param(0, Log4)
     ], Product.prototype, "getPriceWithTax", null);
     return Product;
 }());
-var p1 = new Product('Book', 19);
-var p2 = new Product('Book 2', 29);
+var p1 = new Product("Book", 19);
+var p2 = new Product("Book 2", 29);
 function Autobind(_, _2, descriptor) {
+    //Here 1st and 2nd args are required, but we do not use it in our autobind decorator, so we denoted those arguments as _ and _2 which will tell TS that it will not be used, so the warning will be gone. (We can also write _Toushif - anything after an underscore)
     /* console.log('Method decorator!-----------');
     console.log(target);
     console.log(name);
@@ -151,40 +152,40 @@ function Autobind(_, _2, descriptor) {
         get: function () {
             var boundFn = originalMethod.bind(this);
             return boundFn;
-        }
+        },
     };
     return adjDescriptor;
 }
 var Printer = /** @class */ (function () {
     function Printer() {
-        this.message = 'This works!';
+        this.message = "This works!";
     }
     // @Autobind
     Printer.prototype.showMessage = function () {
-        console.log('show message..', this.message);
+        console.log("show message..", this.message);
     };
     return Printer;
 }());
 var p = new Printer();
 // p.showMessage();
-console.log('show 1', p);
-console.log('show 2', p.constructor); // this is same as show 4 and show 6
-console.log('show 3', p.constructor.prototype); // same as show 5
-console.log('show 4', Printer); // constructor function - same as show 2
-console.log('show 5', Printer.prototype);
-console.log('show 6', Printer.prototype.constructor); // this is same as show 4 above only - constructor function
-console.log('show 7', Printer.prototype.constructor.prototype); //this again is same as show 5 and show 3 above
-//   console.log('show 8', Printer.prototype.showMessage.__proto__.__proto__); 
-var button = document.querySelector('button');
-button.addEventListener('click', p.showMessage);
+console.log("show 1", p);
+console.log("show 2", p.constructor); // this is same as show 4 and show 6
+console.log("show 3", p.constructor.prototype); // same as show 5
+console.log("show 4", Printer); // constructor function - same as show 2
+console.log("show 5", Printer.prototype);
+console.log("show 6", Printer.prototype.constructor); // this is same as show 4 above only - constructor function
+console.log("show 7", Printer.prototype.constructor.prototype); //this again is same as show 5 and show 3 above
+//   console.log('show 8', Printer.prototype.showMessage.__proto__.__proto__);
+var button = document.querySelector("button");
+button.addEventListener("click", p.showMessage);
 var registeredValidators = {};
 function Required(target, propName) {
     var _a;
-    registeredValidators[target.constructor.name] = __assign(__assign({}, registeredValidators[target.constructor.name]), (_a = {}, _a[propName] = ['required'], _a));
+    registeredValidators[target.constructor.name] = __assign(__assign({}, registeredValidators[target.constructor.name]), (_a = {}, _a[propName] = ["required"], _a));
 }
 function PositiveNumber(target, propName) {
     var _a;
-    registeredValidators[target.constructor.name] = __assign(__assign({}, registeredValidators[target.constructor.name]), (_a = {}, _a[propName] = ['positive'], _a));
+    registeredValidators[target.constructor.name] = __assign(__assign({}, registeredValidators[target.constructor.name]), (_a = {}, _a[propName] = ["positive"], _a));
 }
 function validate(obj) {
     var objValidatorConfig = registeredValidators[obj.constructor.name];
@@ -196,10 +197,10 @@ function validate(obj) {
         for (var _i = 0, _a = objValidatorConfig[prop]; _i < _a.length; _i++) {
             var validator = _a[_i];
             switch (validator) {
-                case 'required':
+                case "required":
                     isValid = isValid && !!obj[prop];
                     break;
-                case 'positive':
+                case "positive":
                     isValid = isValid && obj[prop] > 0;
                     break;
             }
@@ -220,16 +221,16 @@ var Course = /** @class */ (function () {
     ], Course.prototype, "price", void 0);
     return Course;
 }());
-var courseForm = document.querySelector('form');
-courseForm.addEventListener('submit', function (event) {
+var courseForm = document.querySelector("form");
+courseForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    var titleEl = document.getElementById('title');
-    var priceEl = document.getElementById('price');
+    var titleEl = document.getElementById("title");
+    var priceEl = document.getElementById("price");
     var title = titleEl.value;
     var price = +priceEl.value;
     var createdCourse = new Course(title, price);
     if (!validate(createdCourse)) {
-        alert('Invalid input, please try again!');
+        alert("Invalid input, please try again!");
         return;
     }
     console.log(createdCourse);

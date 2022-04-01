@@ -20,8 +20,9 @@ var Department = /** @class */ (function () {
         this.name = name;
         // private readonly id: string;
         // private name: string;
-        this.fiscalYear = ''; //here there is no namespace collision, as this fiscalYear is a class property unlike staic property
+        this.fiscalYear = ""; //here there is no namespace collision, as this fiscalYear is a class property unlike staic property
         this.employees = [];
+        //just like const we can mark a class property as readonly which cannot be changed later anywhere.
         // this.id = id;
         // this.name = n;
         // console.log(Department.fiscalYear);
@@ -38,25 +39,28 @@ var Department = /** @class */ (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
-    Department.fiscalYear = 2020; // a static property is craeted so it can be used globally directly without instantiating the class again and again. Just Department.fiscalYear will return the value when accessed outside the class. So you cannot do this.fiscalYear inside the class coz fiscalYear is not a property of the intance of this class anymore. 
+    //if a class is marked as abstrtact then you cannot instantiate that class anymore, bacuse abstract class means that it is only a blueprint or a shell for other classes to extend this class and use its properties and methods. YOu can only instantiate the classes which extends the abstract class.
+    Department.fiscalYear = 2020; // a static property is craeted so it can be used globally directly without instantiating the class again and again. Just Department.fiscalYear will return the value when accessed outside the class. So you cannot do this.fiscalYear inside the class coz fiscalYear is not a property of the intance of this class anymore.
     return Department;
 }());
 var ITDepartment = /** @class */ (function (_super) {
     __extends(ITDepartment, _super);
     function ITDepartment(id, admins) {
-        var _this = _super.call(this, id, 'IT') || this;
+        var _this = _super.call(this, id, "IT") || this;
         _this.admins = admins;
         return _this;
     }
     ITDepartment.prototype.describe = function () {
-        console.log('IT Department - ID: ' + this.id);
+        console.log("IT Department - ID: " + this.id);
     };
     return ITDepartment;
 }(Department));
 var AccountingDepartment = /** @class */ (function (_super) {
     __extends(AccountingDepartment, _super);
     function AccountingDepartment(id, reports) {
-        var _this = _super.call(this, id, 'Accounting') || this;
+        var _this = 
+        //to create a singleton class always add private in front of constructor, that way outside the class you cannot create multiple instances of this class. You can only craete a single instance inside this class only as below getInstances()
+        _super.call(this, id, "Accounting") || this;
         _this.reports = reports;
         _this.lastReport = reports[0];
         return _this;
@@ -66,11 +70,11 @@ var AccountingDepartment = /** @class */ (function (_super) {
             if (this.lastReport) {
                 return this.lastReport;
             }
-            throw new Error('No report found.');
+            throw new Error("No report found.");
         },
         set: function (value) {
             if (!value) {
-                throw new Error('Please pass in a valid value!');
+                throw new Error("Please pass in a valid value!");
             }
             this.addReport(value);
         },
@@ -78,17 +82,18 @@ var AccountingDepartment = /** @class */ (function (_super) {
         configurable: true
     });
     AccountingDepartment.getInstance = function () {
-        if (AccountingDepartment.instance) { //here if AccountingDepartment.instance or this.instance is undefined (whcih it will be initially) then skip the if block and create a new instance below or else always return the same instance. THis is how singleton work - you create the class instance only once and then just use the same instance thereafter.
+        if (AccountingDepartment.instance) {
+            //here if AccountingDepartment.instance or this.instance is undefined (whcih it will be initially) then skip the if block and create a new instance below or else always return the same instance. THis is how singleton work - you create the class instance only once and then just use the same instance thereafter.
             return this.instance;
         }
-        this.instance = new AccountingDepartment('d2', []);
+        this.instance = new AccountingDepartment("d2", []);
         return this.instance;
     };
     AccountingDepartment.prototype.describe = function () {
-        console.log('Accounting Department - ID: ' + this.id);
+        console.log("Accounting Department - ID: " + this.id);
     };
     AccountingDepartment.prototype.addEmployee = function (name) {
-        if (name === 'Max') {
+        if (name === "Max") {
             return;
         }
         this.employees.push(name);
@@ -102,25 +107,25 @@ var AccountingDepartment = /** @class */ (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
-var employee1 = Department.createEmployee('Max');
+var employee1 = Department.createEmployee("Max");
 console.log(employee1, Department.fiscalYear);
-var it = new ITDepartment('d1', ['Max']);
-it.addEmployee('Max');
-it.addEmployee('Manu');
+var it = new ITDepartment("d1", ["Max"]);
+it.addEmployee("Max");
+it.addEmployee("Manu");
 // it.employees[2] = 'Anna';
 it.describe();
-it.name = 'NEW NAME';
+it.name = "NEW NAME";
 it.printEmployeeInformation();
 console.log(it);
 // const accounting = new AccountingDepartment('d2', []);
 var accounting = AccountingDepartment.getInstance();
 var accounting2 = AccountingDepartment.getInstance();
 console.log(accounting, accounting2);
-accounting.mostRecentReport = 'Year End Report';
-accounting.addReport('Something went wrong...');
+accounting.mostRecentReport = "Year End Report";
+accounting.addReport("Something went wrong...");
 console.log(accounting.mostRecentReport);
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
 // accounting.printReports();
 // accounting.printEmployeeInformation();
 accounting.describe();

@@ -1,3 +1,4 @@
+console.log('-------------------Generics Start-----------------------');
 // const names: Array<string> = []; // string[]
 // // names[0].split(' ');
 
@@ -99,3 +100,4 @@ function createCourseGoal(
 const names: Readonly<string[]> = ["Max", "Anna"];
 // names.push('Manu');
 // names.pop();
+console.log('-------------------Generics End-----------------------');

@@ -1,6 +1,4 @@
 "use strict";
-// const names: Array<string> = []; // string[]
-// // names[0].split(' ');
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -17,6 +15,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
+console.log('-------------------Generics Start-----------------------');
+// const names: Array<string> = []; // string[]
+// // names[0].split(' ');
 // const promise: Promise<number> = new Promise((resolve, reject) => {
 //   setTimeout(() => {
 //     resolve(10);
@@ -28,23 +29,23 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 function merge(objA, objB) {
     return __assign(__assign({}, objA), objB);
 }
-var mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
+var mergedObj = merge({ name: "Max", hobbies: ["Sports"] }, { age: 30 });
 console.log(mergedObj);
 function countAndDescribe(element) {
-    var descriptionText = 'Got no value.';
+    var descriptionText = "Got no value.";
     if (element.length === 1) {
-        descriptionText = 'Got 1 element.';
+        descriptionText = "Got 1 element.";
     }
     else if (element.length > 1) {
-        descriptionText = 'Got ' + element.length + ' elements.';
+        descriptionText = "Got " + element.length + " elements.";
     }
     return [element, descriptionText];
 }
-console.log(countAndDescribe(['Sports', 'Cooking']));
+console.log(countAndDescribe(["Sports", "Cooking"]));
 function extractAndConvert(obj, key) {
-    return 'Value: ' + obj[key];
+    return "Value: " + obj[key];
 }
-extractAndConvert({ name: 'Max' }, 'name');
+extractAndConvert({ name: "Max" }, "name");
 var DataStorage = /** @class */ (function () {
     function DataStorage() {
         this.data = [];
@@ -64,9 +65,9 @@ var DataStorage = /** @class */ (function () {
     return DataStorage;
 }());
 var textStorage = new DataStorage();
-textStorage.addItem('Max');
-textStorage.addItem('Manu');
-textStorage.removeItem('Max');
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
 console.log(textStorage.getItems());
 var numberStorage = new DataStorage();
 function createCourseGoal(title, description, date) {
@@ -76,7 +77,8 @@ function createCourseGoal(title, description, date) {
     courseGoal.completeUntil = date;
     return courseGoal;
 }
-var names = ['Max', 'Anna'];
+var names = ["Max", "Anna"];
 // names.push('Manu');
 // names.pop();
+console.log('-------------------Generics End-----------------------');
 //# sourceMappingURL=generic.js.map

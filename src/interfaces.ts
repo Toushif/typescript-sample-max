@@ -43,4 +43,4 @@ user1 = new PersonClass();
 // user1.name = 'Manu';
 
 user1.greet("Hi there - I am");
-console.log(user1);
+console.log(user1.greet('Toushif'));

@@ -12,10 +12,10 @@ var PersonClass = /** @class */ (function () {
     }
     PersonClass.prototype.greet = function (phrase) {
         if (this.name) {
-            console.log(phrase + ' ' + this.name);
+            console.log(phrase + " " + this.name);
         }
         else {
-            console.log('Hi!');
+            console.log("Hi!");
         }
     };
     return PersonClass;
@@ -23,6 +23,6 @@ var PersonClass = /** @class */ (function () {
 var user1;
 user1 = new PersonClass();
 // user1.name = 'Manu';
-user1.greet('Hi there - I am');
-console.log(user1);
+user1.greet("Hi there - I am");
+console.log(user1.greet('Toushif'));
 //# sourceMappingURL=interfaces.js.map
