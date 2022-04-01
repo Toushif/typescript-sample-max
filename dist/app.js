@@ -1,4 +1,5 @@
 "use strict";
+console.log('-------------------App Start-----------------------');
 var Role;
 (function (Role) {
     Role[Role["ADMIN"] = 0] = "ADMIN";
@@ -12,4 +13,5 @@ var person = {
 var aa;
 // const btn = document.querySelector('button')
 console.log("Toushif");
+console.log('-------------------App End-----------------------');
 //# sourceMappingURL=app.js.map

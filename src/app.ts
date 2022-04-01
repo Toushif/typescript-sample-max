@@ -1,3 +1,4 @@
+console.log('-------------------App Start-----------------------');
 enum Role {
     ADMIN,
     READ,
@@ -12,3 +13,4 @@ let aa: unknown;
 
 // const btn = document.querySelector('button')
 console.log("Toushif");
+console.log('-------------------App End-----------------------');
