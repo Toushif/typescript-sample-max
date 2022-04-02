@@ -13,7 +13,7 @@ class random {
     ss: any;
 
     constructor(public names: string) {
-        // this.ss = names
+        this.ss = names
     }
 }
 
