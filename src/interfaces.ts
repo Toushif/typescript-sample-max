@@ -41,8 +41,9 @@ class PersonClass implements Greetable {
 let user1: Greetable;
 
 user1 = new PersonClass();
+let user2 = new PersonClass('Toushif');
 // user1.name = 'Manu';
 
 user1.greet("Hi there - I am");
-console.log(user1.greet('Toushif'));
+user2.greet('Hi');
 console.log('-------------------Interface End-----------------------');
