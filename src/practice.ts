@@ -8,12 +8,18 @@ interface Named {
     outputName?: string;
 }
 
-class random {
+interface random {
+    check: boolean;
+    readonly name: string;
+    func: (a: string) => void;
+}
+
+class random implements random {
     check: boolean = true;
-    ss: any;
+    so: string;
 
     constructor(public names: string) {
-        this.ss = names
+        this.so = names;
     }
 }
 

@@ -4,7 +4,7 @@ var random = /** @class */ (function () {
     function random(names) {
         this.names = names;
         this.check = true;
-        this.ss = names;
+        this.so = names;
     }
     return random;
 }());
