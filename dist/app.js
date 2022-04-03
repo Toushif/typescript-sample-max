@@ -6,11 +6,11 @@ var Role;
     Role[Role["READ"] = 1] = "READ";
     Role[Role["AUTHOR"] = 2] = "AUTHOR";
 })(Role || (Role = {}));
-var person = {
+const person = {
     hobbies: ["Books", "Crypto", 54, [12, { aa: "aa" }], false],
     roles: Role.ADMIN,
 };
-var aa;
+let aa;
 // const btn = document.querySelector('button')
 console.log("Toushif");
 console.log('-------------------App End-----------------------');

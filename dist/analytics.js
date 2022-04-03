@@ -1,3 +1,3 @@
 "use strict";
-var bb;
+let bb;
 //# sourceMappingURL=analytics.js.map

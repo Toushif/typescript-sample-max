@@ -1,18 +1,17 @@
 "use strict";
 console.log('-------------------Practice Start-----------------------');
-var random = /** @class */ (function () {
-    function random(names) {
+class random {
+    constructor(names) {
         this.names = names;
         this.check = true;
         this.so = names;
     }
-    return random;
-}());
-var hi = function (yo) {
+}
+const hi = (yo) => {
     console.log("yo", yo);
 };
 hi("Toushif");
-var cl = new random("Boris");
+const cl = new random("Boris");
 console.log("clllllll", cl);
 // class ITDep extends random {
 // }
