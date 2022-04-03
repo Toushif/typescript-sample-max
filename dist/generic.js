@@ -1,4 +1,20 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 console.log('-------------------Generics Start-----------------------');
 // const names: Array<string> = []; // string[]
 // // names[0].split(' ');
@@ -11,12 +27,12 @@ console.log('-------------------Generics Start-----------------------');
 //   // data.split(' ');
 // })
 function merge(objA, objB) {
-    return Object.assign(Object.assign({}, objA), objB);
+    return __assign(__assign({}, objA), objB);
 }
-const mergedObj = merge({ name: "Max", hobbies: ["Sports"] }, { age: 30 });
+var mergedObj = merge({ name: "Max", hobbies: ["Sports"] }, { age: 30 });
 console.log(mergedObj);
 function countAndDescribe(element) {
-    let descriptionText = "Got no value.";
+    var descriptionText = "Got no value.";
     if (element.length === 1) {
         descriptionText = "Got 1 element.";
     }
@@ -30,37 +46,38 @@ function extractAndConvert(obj, key) {
     return "Value: " + obj[key];
 }
 extractAndConvert({ name: "Max" }, "name");
-class DataStorage {
-    constructor() {
+var DataStorage = /** @class */ (function () {
+    function DataStorage() {
         this.data = [];
     }
-    addItem(item) {
+    DataStorage.prototype.addItem = function (item) {
         this.data.push(item);
-    }
-    removeItem(item) {
+    };
+    DataStorage.prototype.removeItem = function (item) {
         if (this.data.indexOf(item) === -1) {
             return;
         }
         this.data.splice(this.data.indexOf(item), 1); // -1
-    }
-    getItems() {
-        return [...this.data];
-    }
-}
-const textStorage = new DataStorage();
+    };
+    DataStorage.prototype.getItems = function () {
+        return __spreadArray([], this.data);
+    };
+    return DataStorage;
+}());
+var textStorage = new DataStorage();
 textStorage.addItem("Max");
 textStorage.addItem("Manu");
 textStorage.removeItem("Max");
 console.log(textStorage.getItems());
-const numberStorage = new DataStorage();
+var numberStorage = new DataStorage();
 function createCourseGoal(title, description, date) {
-    let courseGoal = {};
+    var courseGoal = {};
     courseGoal.title = title;
     courseGoal.description = description;
     courseGoal.completeUntil = date;
     return courseGoal;
 }
-const names = ["Max", "Anna"];
+var names = ["Max", "Anna"];
 // names.push('Manu');
 // names.pop();
 console.log('-------------------Generics End-----------------------');
