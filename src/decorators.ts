@@ -203,6 +203,7 @@ class Course {
 }
 
 const courseForm = document.querySelector("form")!;
+
 courseForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const titleEl = document.getElementById("title") as HTMLInputElement;
